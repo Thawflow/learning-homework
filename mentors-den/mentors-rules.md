@@ -49,10 +49,30 @@ v1 即日生效（14:00 首课前）；后续修订走 git + 双签（冰爪 × 
   - 发起·定稿：如意 ✨（2026-08-30 20:38）
   - 签认：冰爪 ❄️（2026-08-30 23:38）「⑩ 与 ⑧⑨ / v1.3.1 平铺规则核对无冲突；只动文件名与位置、不动内容、存疑列晨会确认项，边界稳妥。签认 v1.4。」
 11. **晨会制度**（v1.5 Tree 8/30 20:40 立）— 每日 07:00 两位 mentor iMessage 碰头，由如意的 cron 发起；发起前先同步本仓（git pull --rebase）。讨论议题：①两位学员昨日学习情况（作业不进仓库，各 mentor 自报）②仓库内容变更（昨日 git log：站点/课程/评语机制）③课程内容变更（KV 发布/调整）④mentor rules 变化（本 spec 演进）⑤待决策项。结论各自留档（mentors-log/），涉及课程修改的经双 mentor 确认后执行。
+12. **真实学习时长 · Thonny 日志解析**（v1.6 Tree 9/4 22:24 立）— `sandbox-practice-tracker` 已采「文件 mtime + Thonny 会话 + 浏览器事件」（v1.5 〇、工具栈），但会话启停时间未解析，活跃时长只能粗估。v1.6 起从 Thonny 日志直接拉真实学习时长：
+   - **日志路径**：macOS `~/Library/Logs/Thonny/` · Linux `~/.config/Thonny/thonny.log` · Windows `%APPDATA%\Thonny\thonny.log`
+   - **做法**：tracker 升级每 5min 读 Thonny 日志末行 → 解析 `Session started/ended at <time>` → 算本次会话时长；空闲 = 60s+ 无键鼠事件
+   - **真实学习时长** = Σ会话时长 - 空闲时长（多窗口/多 session 取并集不累加，避免虚高）
+   - **落档**：写 `<学员目录>/reviews/active-time.md`（**不进 git**，仅学员本机）；mentor review 作业时引用当日数据
+   - **踩坑**：Thonny 未启动 = 标 N/A（**不算 0**，区别于「今天没学习」）；14:00 发布的练习题 22:00 才提交 = 真实时长包括晚上时段
+13. **mentor 持续学课**（v1.6 Tree 9/4 22:24 立）— 入职已读 W01-L01~L03 讲义风格（v1.5「五、加入我们的步骤」），但**新课发布后 mentor 可能没及时跟进**，review 时不知学员在看哪节、用什么语法。v1.6 起：
+   - **新课发布即时读**：每次 KV 发布新课（14:00 daily-practice ⑭ 配套），mentor **24h 内读完** `mentors-den/course/W0X-L0X.md` 全部内容
+   - **晨会同步课程变更**：每日 07:00 晨会第②议题 = 昨日 `git log --since=1d course/` 变更 → mentor 自报已读哪些
+   - **改课前全读**：草拟新讲义前先读 W0X 已发布所有 L0X 维持风格一致（v1.5「改课程前」补强 = 先读后写）
+   - **cron 提醒**：`mentor-lesson-read-check` cron 每天 14:30 Asia/Shanghai 扫昨日 course/ 变更 → 未读 mentor 提醒
+14. **daily-practice 节奏 · 14:00 发布 → 提交 → review**（v1.6 Tree 9/4 22:24 立）— cron `ruyi-icepaw-daily-practice` 每天 14:00 Asia/Shanghai 触发（原 `<user>-daily-joy-bringer` 命名不准确，v1.6 改名 `<user>-daily-practice` 并明确链路）：
+   - **14:00 发布**：cron 发 iMessage 给学员今日练习题（题面 + 提示 + 参考答案）+ 同步写入 KV `learning/daily-practice/<date>`（学员在站点能看到）
+   - **学员当日完成**：答案写 `<学员目录>/homework/W0X-L0X-daily.py`（**命名约定 v1.6 新增**：daily-practice 配套）
+   - **mentor 14:00-22:00 巡检**：学员主动通知「交作业」→ 启动 review；或 cron `<user>-daily-practice-scan` 每 2h 扫 homework/ 新文件 → 自动触发 review
+   - **review 落档**：评语写 `<学员目录>/reviews/W0X-L0X-daily.review.md`，通知学员
+   - **联动**：v1.5 ⑪ 晨会第①议题增列「昨日 daily-practice 提交率」（出勤三源融合统计）
   - **v1.5**（2026-08-30 20:40）— ⑪晨会制度（发起方/同步前置/五大议题）。源头：Tree 8/30 20:40 指示。
   - 发起·定稿：如意 ✨（2026-08-30 20:40）
   - 签认：冰爪 ❄️（2026-08-30 23:38）「⑪ 五项议题齐整，pull --rebase 前置 + 结论各自留档 mentors-log/ 清晰。签认 v1.5。首跑 8/31 07:00，Tree 出差途中，晨会照常。」
   - 签认：如意 ✨（2026-08-30 20:26）
+- **v1.6**（2026-09-04 22:24 Tree 立）— ⑫Thonny 日志解析 → 真实学习时长；⑬mentor 持续学课；⑭daily-practice 14:00 发布节奏。源头：Tree 2026-09-04 22:24 钉钉私聊「完善 mentor 上岗指南：监测本地 Thonny 日志、学习每节课内容、了解每天 14:00 发布的练习题」。
+  - 发起·定稿：如意 ✨（2026-09-04 22:24）
+  - 签认：冰爪 ❄️ 待办（请 20min 内回复「签认 v1.6」或列异议具体条款）
 - **v1.3**（2026-08-30 20:29）— 附录「双签工作流」：ThawPaw授权 mentor 自决（作业目录/评语机制/命名约定/课次/节奏/成效评估/互审），重大边界变更才报 Tree（隐私/公私仓/称呼/current/体量带）。双签超时 1h 走 Tree 报。
   - 发起·签认：冰爪 ❄️（2026-08-30 20:29）
   - 签认：如意 ✨ 待办（待 20:32 之前确认）
@@ -128,7 +148,9 @@ v1 即日生效（14:00 首课前）；后续修订走 git + 双签（冰爪 × 
 |---|---|---|
 | `sandbox-practice-tracker` | every 5min | 出勤三源融合（文件+Thonny+浏览器），trigger fire:false |
 | `mentors-morning-standup` | cron 07:00 Asia/Shanghai | 每日晨会发起（v1.5 ⑪） |
-| `<user>-daily-joy-bringer` | cron 14:00 | 每日一个 Python 灵感（可选，活跃度用） |
+| `<user>-daily-practice` | cron 0 14 * * * Asia/Shanghai | 每日 14:00 发布练习题（v1.6 ⑭ · 原 daily-joy-bringer 改名） |
+| `mentor-lesson-read-check` | cron 30 14 * * * Asia/Shanghai | 每日 14:30 提醒 mentor 读昨日新课（v1.6 ⑬） |
+| `<user>-daily-practice-scan` | every 2h 14:00-22:00 | 学员 daily-practice 作业巡检，触发 review（v1.6 ⑭） |
 | `<user>-safety-check` | cron 每小时 | 学员安全巡检（危险操作拦） |
 | `<user>-nightly-diary` | cron 23:00 | mentor 自我反思日记 |
 

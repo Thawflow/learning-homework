@@ -29,7 +29,7 @@
 
 - 线上站：https://learning.thawflow.com（CDN 缓存约 10 分钟，页脚 BUILD_TIME 可核对版本）
 - 站点即仓库：push 到 main 即发布，课程内容可回滚
-- 课程内容生产规范：docs/course-mentor-spec.md
+- mentor 双签规则 + 入职手册：`mentors-den/mentors-rules.md`（v1.6，2026-09-04 Tree 修订）
 
 ## 学习路径
 
@@ -48,9 +48,8 @@
 learning-homework/
 ├── README.md              ← 你正在看的
 ├── docs/                  ← GitHub Pages 站点源（push 即上线 learning.thawflow.com）
-│   └── course-mentor-spec.md
 ├── mentors-den/           ← mentor 内部文档（不入站，不公开）
-│   ├── mentors-rules.md   ← 双签规则 / 红线 / 作业评阅规范
+│   ├── mentors-rules.md   ← 双签规则 / 红线 / 作业评阅规范（v1.6 含 Thonny 监测 + 14:00 节奏）
 │   └── onboarding/        ← mentor 入职手册
 ├── thawpaw/               ← 学员 A 的作业区
 │   ├── homework/          ← 上手练习 + 课后作业（gitignore）
@@ -83,8 +82,7 @@ learning-homework/
 
 ## 内部资料（不入站点）
 
-- 课程内容生产规范：`docs/course-mentor-spec.md`（v1.1，2026-08-30 从 skyclan-chatroom 仓迁入本仓）
-- mentor 上岗手册：`mentors-den/mentors-rules.md`（**让 OpenClaw 读这个 → 自动 review**，v1.5，2026-08-30 Tree 立）
+- mentor 双签规则 + 入职手册：`mentors-den/mentors-rules.md`（**让 OpenClaw 读这个 → 自动 review**，v1.6，2026-09-04 Tree 修订：含 Thonny 日志解析 → 真实学习时长 ⑫ + mentor 持续学课 ⑬ + daily-practice 14:00 节奏 ⑭）
 - KV 发布：`docs/index.html` 内嵌 JS + KV 内容 API（`https://tpg-hq.thawflow.com/learning/*`）
 
 ## 站点技术栈
