@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="沙坑训练场">
-<script>var BUILD_TIME="20260902-0945"
+<script>var BUILD_TIME="20260908-1248"
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 <style>
 :root{--bg:#0f1420;--card:#171e2e;--card2:#1e2740;--border:#2a3550;--text:#e8ecf4;--text2:#8b96ad;--accent:#5b9dff;--accent2:#7c6cff;--ok:#3ecf8e;--warn:#ffb454}
@@ -96,7 +96,7 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
   <footer>🏖️ 沙坑训练场 · learning v1 · <span id="bt"></span></footer>
 </div>
 <script src="vendor/marked.min.js"></script>
-<script src="track.js?v=4" defer></script>
+<script src="track.js?v=5" defer></script>
 <script>
 // 📊 学习互动埋点 v1（2026-08-30 Tree 设计）：点击 = 正在学习的信号，上报 click:* 事件供沙坑融合统计
   document.addEventListener('click', function (ev) {
@@ -129,6 +129,10 @@ async function fetchJSON(url,timeout){
 // 根因：数据层零缓存 + 串行双域名各 10s 超时；慢域名+兜底也慢 = 每次打开必转圈 5-20s
 function lsGet(k){try{return JSON.parse(localStorage.getItem('learning-c:'+k))}catch(e){return null}}
 function lsSet(k,v){try{localStorage.setItem('learning-c:'+k,JSON.stringify(v))}catch(e){}}
+// 记录学员上次停的章节（2026-09-08 Tree 提需求、小马 v1.8 实现）：默认页 localStorage key；intersection observer 50% 可见即写。
+function posGet(){try{return JSON.parse(localStorage.getItem('learning-pos'))}catch(e){return null}}
+function posSet(p){try{localStorage.setItem('learning-pos',JSON.stringify({...p,ts:Date.now()}))}catch(e){}}
+function posResolve(){const p=posGet();if(!p||!weeksData.length)return null;const w=weeksData.find(x=>x.id===p.weekId);if(!w)return null;return {week:w,lessonId:p.lessonId||null}}
 function raceJSON(path,timeout){
   const bases=[API,'https://tpg-hq.icepaw.workers.dev'];
   return new Promise((res,rej)=>{
@@ -145,10 +149,18 @@ function raceJSON(path,timeout){
 async function loadIndex(){
   // 缓存优先：本地秒开 → 后台竞速刷新（网络挂了也照常用旧数据）
   const cached=lsGet('weeks');
+  // 进入页默认跳到「上次停留的章节」（2026-09-08 Tree 提需求）：pos 优先 > current 周 > 最新周
+  function _pickStartWeek(){
+    const pos=posResolve();
+    if(pos)return {week:pos.week,lessonId:pos.lessonId,src:'pos'};
+    const cur=weeksData.find(w=>w.current);
+    if(cur)return {week:cur,lessonId:null,src:'current'};
+    return {week:weeksData[weeksData.length-1],lessonId:null,src:'latest'};
+  }
   if(cached&&cached.length){
     weeksData=cached;renderWeeks();
-    const c0=weeksData.find(w=>w.current)||weeksData[weeksData.length-1];
-    if(c0)loadWeek(c0.id);
+    const s0=_pickStartWeek();
+    if(s0.week)loadWeek(s0.week.id);
   }
   try{
     const j=await raceJSON('/learning/weeks');
@@ -156,8 +168,12 @@ async function loadIndex(){
     if(wks.length){
       lsSet('weeks',wks);weeksData=wks;renderWeeks();
       if(!cached||!cached.length){
-        const c=weeksData.find(w=>w.current)||weeksData[weeksData.length-1];
-        if(c)loadWeek(c.id);
+        const s=_pickStartWeek();
+        if(s.week)loadWeek(s.week.id);
+      }else{
+        // 缓存已跳了一次；网络返回后 pos 周仍存在 → 平滑跳转 + 滚到上次课
+        const s=_pickStartWeek();
+        if(s.week&&s.src==='pos'&&curWeek!==s.week.id){loadWeek(s.week.id)}
       }
     }
   }catch(e){
@@ -273,6 +289,34 @@ function renderWeek(w){
     renderWeeks();
   }
   syncDone();
+  // 记录「学员停在的章节」（2026-09-08 v1.8）：intersection observer 50% 可见即写入 learning-pos；scroll position 也写
+  try{
+    if(typeof IntersectionObserver!=='undefined'){
+      const lessons=document.querySelectorAll('#content .md[data-lid]');
+      const io=new IntersectionObserver(entries=>{
+        for(const e of entries){
+          if(e.isIntersecting && e.intersectionRatio>=0.5){
+            const lid=e.target.dataset.lid;
+            if(lid&&curWeek)posSet({weekId:curWeek,lessonId:lid});
+          }
+        }
+      },{threshold:[0.5]});
+      lessons.forEach(el=>io.observe(el));
+    }
+    // 退化方案：scroll 1s 防抖 写 pos（防止不支持 IO 的旧浏览器 / service worker cache）
+    let _st;
+    addEventListener('scroll',()=>{clearTimeout(_st);_st=setTimeout(()=>{
+      const lessons=[...document.querySelectorAll('#content .md[data-lid]')];
+      if(!lessons.length||!curWeek)return;
+      let nearest=lessons[0],best=Infinity;
+      for(const el of lessons){
+        const r=el.getBoundingClientRect();
+        const dist=Math.abs(r.top+window.innerHeight/2);
+        if(dist<best){best=dist;nearest=el}
+      }
+      if(nearest&&nearest.dataset.lid)posSet({weekId:curWeek,lessonId:nearest.dataset.lid});
+    },1000)},{passive:true});
+  }catch(e){}
 }
 loadIndex();
 $('#bt').textContent=BUILD_TIME==='DEV'?'DEV build':'v'+BUILD_TIME;
