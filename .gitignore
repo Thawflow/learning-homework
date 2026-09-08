@@ -2,7 +2,6 @@
 # v1.2 ⑧：作业目录分家 homework/ + reviews/，均不进 git（ThawPaw 8/30 立，如意 20:26 签认）
 thawpaw/*
 !thawpaw/.gitkeep
-tree/*
-!tree/.gitkeep
-# mentor 晨会日志：导师间内部讨论，只本地留档（2026-08-30 Tree 指示的碰头机制）
+# v1.7.1 ⑧' 2026-09-08 Tree 授权：tree/ 解 gitignore（学员本人自主决定公开作业），thawpaw/ 保持 ignore 保护苗苗学员隐私
+# mentors-log/ 仍 ignore：mentor 晨会内部讨论，不入公开仓
 mentors-log/
