@@ -24,19 +24,40 @@
 
 ## 生效与修订
 
-v1 即日生效（14:00 首课前）；后续修订走 git + 双签（冰爪 × 如意），重大边界变更报 Tree。
+v1 即日生效（14:00 首课前）；v1.8 起改为**单签 + chatroom review**（不再要求双签/单签），重大边界变更仍报 Tree。
 
-### 双签工作流（v1.3 ThawPaw 8/30 20:29 授权补）
+### 单签 + chatroom review 工作流（v1.8 Tree 2026-09-08 12:43 授权）
 
-- **mentor 自决范围（不报 Tree）：** 作业目录、评语机制、练习命名约定、课次与周次、发布节奏、成效评估、互相代码评审。所有变更以 git commit + mentor 双签为据点。
-- **必报 Tree 的边界变更：** 隐私红线（⑥）、公开仓判定（公 vs 私）、学员可识别称呼调整、current 切换（⑦）、课程体量带（⑤）上浮/下浮。
-- **双签流程：** 冰爪发起（chatroom + iMessage）→ 如意 20min 内回复「签认 vX.X」或列异议具体条款 → 冰爪 git commit 落档 → 如意补签 → 双方 iMessage 留档。超过 1h 未回，冰爪可向 Tree 报「mentor 联联」。
+**源动力：** 提升 mentor 迭代沙坑课程内容和规则的效率，取消双签、单签要求。每个 mentor 发现问题可直接修改 → 提交 → 推送 → chatroom @另一位 mentor review。
+
+**mentor 自决范围（不报 Tree）：** **全部沙坑内容** —— 课程、规则、文档、客户端代码（`docs/index.html` / `track.js` / `sw.js`）、学员目录治理、评语机制、命名约定、课次周次、发布节奏、成效评估、互审代码评审。所有变更以 git commit + chatroom @review 为据点。
+
+**必报 Tree 的边界变更（chatroom @Tree 等同意）：** 隐私红线（⑥）、公开仓判定（公 vs 私）、学员可识别称呼调整、current 切换（⑦）。
+
+**流程：**
+1. **小马（MK-002）/ IcePaw：** 修改 → git commit → push → chatroom @**如意** review
+2. **如意 ✨：** 修改 → git commit → push → chatroom @**小马** + @**IcePaw** review
+3. **review 发现问题：** mentor 直接改 → push → 再 chatroom @原作者；原作者收到可同步再修。
+4. **学员自主授权例外：** 学员本人（如 Tree 9/8 解 `tree/` gitignore）的边界变更由学员自主拍板，mentor 代执行。
+
+**冰爪/如意跨分身协同：**
+- 两位均属 Vega Punk 计划 + SkyClan 家庭双重身份，soul/identity 分身独立，memory.md 共享
+- 沙坑治理规则的解释/补充**优先看 SOUL.md**（分身独立持有），跨分身同步看 memory.md
+- chatroom 通知走 `~/projects/skyclan-chatroom`（客户端）发 skyclan-chatroom
+
+**v1.3 双签工作流已被 v1.8 取代。** 历史 v1.4/v1.5 真实签认段落保留不删（23:50 23:55 双签追认已是历史活签认）。
+
+### ~~双签工作流（v1.3 ThawPaw 8/30 20:29 授权补，2026-09-08 12:43 由 v1.8 取代）~~
+
+- ~~**mentor 自决范围（不报 Tree）：** 作业目录、评语机制、练习命名约定、课次与周次、发布节奏、成效评估、互相代码评审。所有变更以 git commit + mentor 双签为据点。~~
+- ~~**必报 Tree 的边界变更：** 隐私红线（⑥）、公开仓判定（公 vs 私）、学员可识别称呼调整、current 切换（⑦）、课程体量带（⑤）上浮/下浮。~~
+- ~~**双签流程：** 冰爪发起（chatroom + iMessage）→ 如意 20min 内回复「签认 vX.X」或列异议具体条款 → 冰爪 git commit 落档 → 如意补签 → 双方 iMessage 留档。超过 1h 未回，冰爪可向 Tree 报「mentor 联联」。~~
 
 ## 签署（v1）
 
 - **冰爪 ❄️** — 2026-08-30 03:55 定稿，签认 v1。
 - **如意 ✨** — 2026-08-30 04:06 补签：「七条全读、三条底线+四条补充与我所提交内容一致，如意签认 v1，即日生效。」
-- **落档注（冰爪）** — 2026-08-30 凌晨 commit 入 skyclan-chatroom/docs/（公开仓）。入库时按红线⑥将可识别称呼与年龄数字规范化为中性表述（「学员」等），七条规则语义零改动；workspace 原稿同步同款，两版一致。后续修订一律 git commit + 双签。〔v1.1 补漏：本注原文自含一处称呼，一并清零〕
+- **落档注（冰爪）** — 2026-08-30 凌晨 commit 入 skyclan-chatroom/docs/（公开仓）。入库时按红线⑥将可识别称呼与年龄数字规范化为中性表述（「学员」等），七条规则语义零改动；workspace 原稿同步同款，两版一致。**v1.8 起后续修订一律 git commit + chatroom review（取代双签）。**〔v1.1 补漏：本注原文自含一处称呼，一并清零〕
 
 ## 修订记录
 
@@ -73,11 +94,19 @@ v1 即日生效（14:00 首课前）；后续修订走 git + 双签（冰爪 × 
   - 签认：如意 ✨（2026-08-30 20:26）
 - **v1.6**（2026-09-04 22:24 Tree 立）— ⑫Thonny 日志解析 → 真实学习时长；⑬mentor 持续学课；⑭daily-practice 14:00 发布节奏。源头：Tree 2026-09-04 22:24 钉钉私聊「完善 mentor 上岗指南：监测本地 Thonny 日志、学习每节课内容、了解每天 14:00 发布的练习题」。
   - 发起·定稿：如意 ✨（2026-09-04 22:24）
-  - 签认：冰爪 ❄️ 待办（请 20min 内回复「签认 v1.6」或列异议具体条款）
+  - 签认：冰爪 ❄️ 待办（v1.8 起免签；按 v1.8 chatroom review 流程）
 - **v1.7**（2026-09-08 09:47 Tree 立）— ⑮随堂练习文件化·开课即建：讲义开头要求新建 `W0X-L0X-practice.py`，随堂演示/踩坑与课后作业 `W0X-L0X-homework.py` 分文件，mentor 靠 practice 文件 + 时间锚定检查「确实随堂练了」。同步：W02-L01 讲义对齐（课前准备块 + `types.py`→practice.py + 第六节拆 homework）；头部版本标注 v1.5→v1.7 一并修（9/8 晨会待办）。存量课 W02-L02 起解锁前对齐。源头：Tree 2026-09-08 09:47 chatroom @如意「随堂练习的内容也要要求学员创建个文件，与课后作业分开，这样 mentor 可以检查学员的确随堂练习了…加到 mentor rules，更新当前的课程内容，在一开始要求新建一个随堂练习的文件，约定好文件名」。
   - 发起·定稿：如意 ✨（2026-09-08 09:58）
-  - 签认：冰爪 ❄️ 待办（请 20min 内回复「签认 v1.7」或列异议具体条款；v1.6 签认一并补）
-- **v1.3**（2026-08-30 20:29）— 附录「双签工作流」：ThawPaw授权 mentor 自决（作业目录/评语机制/命名约定/课次/节奏/成效评估/互审），重大边界变更才报 Tree（隐私/公私仓/称呼/current/体量带）。双签超时 1h 走 Tree 报。
+  - 签认：冰爪 ❄️ 待办（v1.8 起免签；按 v1.8 chatroom review 流程）
+
+- **v1.8**（2026-09-08 12:43 Tree 立）— **取消双签、单签要求**，改为**单签 + chatroom review**。每个 mentor（冰爪/如意/小马）发现问题可直接修改 → git commit → push → chatroom @另一位 mentor review。mentor 自决范围扩大到全部沙坑内容（含客户端代码 `docs/index.html` / `track.js` / `sw.js`），仅隐私红线/公开仓判定/学员称呼调整/current 切换 4 项必报 Tree。学员本人自主授权例外（如 Tree 9/8 解 `tree/` gitignore）由学员自主拍板。
+  - 发起·定稿：小马 🐴（2026-09-08 12:43 代 Tree 执行）
+  - 签认：v1.8 取消签认要求
+  - review 流程：
+    - 小马 / IcePaw：修改 → commit → push → chatroom @**如意** review
+    - 如意：修改 → commit → push → chatroom @**小马** + @**IcePaw** review
+    - review 发现问题 → mentor 直接再改 push + 再 chatroom @原作者
+- **v1.3**（2026-08-30 20:29）— 附录「双签工作流」：ThawPaw授权 mentor 自决（作业目录/评语机制/命名约定/课次/节奏/成效评估/互审），重大边界变更才报 Tree（隐私/公私仓/称呼/current/体量带）。双签超时 1h 走 Tree 报。**【2026-09-08 12:43 v1.8 取代双签，改为单签 + chatroom review】**
   - 发起·签认：冰爪 ❄️（2026-08-30 20:29）
   - 签认：如意 ✨ 待办（待 20:32 之前确认）
 
@@ -144,7 +173,7 @@ v1 即日生效（14:00 首课前）；后续修订走 git + 双签（冰爪 × 
 2. 草拟新讲义（标题 `# W0X-L0X · ...`，4-6KB 中文 / 4.5-6KB 英文）
 3. 跑 `python3 ~/.openclaw/scripts/scan-cn-in-code.py` 确认零中文代码块
 4. 跑 `python3 ~/.openclaw/scripts/check-code-blocks.py` 确认 python 块语法 ok
-5. git commit + 双签 + 发 iMessage 通知学员「新课上架」
+5. git commit + push（v1.8 起免双签）+ chatroom @**另一位 mentor** review + 发 iMessage 通知学员「新课上架」
 
 ## 三、cron 模板（拷贝即用）
 
@@ -172,6 +201,6 @@ v1 即日生效（14:00 首课前）；后续修订走 git + 双签（冰爪 × 
 3. 读 `mentors-den/course/W01-L01.md ~ W01-L03.md` 看讲义风格（30 分钟）
 4. 跟一位现有 mentor 旁听一周晨会（07:00 每天）
 5. 选一个 lesson，自己写一份，按 check-code-blocks 验收
-6. 双签进入 v1.X 的 mentor 列表 🎉
+6. chatroom review 进入 v1.X 的 mentor 列表 🎉（v1.8 起无签认要求）
 
 — **mentors-den 出品 · Thawpaw 8/30 20:55 立**
