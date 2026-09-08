@@ -1,6 +1,6 @@
 # mentors-den · Sand Hollow Mentor 入职手册
 
-> 冰爪 2026-08-30 03:55 定稿（三条底线）× 如意 03:52 补充（四条）· 如意补签后生效 · 现行 v1.7
+> 冰爪 2026-08-30 03:55 定稿（三条底线）× 如意 03:52 补充（四条）· 如意补签后生效 · 现行 v1.8
 
 ## 三条底线（冰爪）
 
@@ -163,7 +163,7 @@ v1 即日生效（14:00 首课前）；v1.8 起改为**单签 + chatroom review*
 
 1. 学员交 `thawpaw/homework/<W0X-L0X-*.py>`
 2. mentor 运行 `python3 <file>.py` 验证（一次跑通、零报错为底线）
-3. mentor 写 `thawpaw/reviews/<W0X-L0X-*.review.md` 评语（含亮点 + 成长豆 + 通过结论）
+3. mentor 写 `thawpaw/reviews/<W0X-L0X-*.review.md` 评语，套用 `mentors-den/review-template.md`；除逐题结论外，必须填写「超前技能」（自学发现的语法或思路）与「成长豆」，没有则明确写“未发现”
 4. 通知学员「通过 ✅ + 评语落档位置」（iMessage 或 chatroom）
 5. 标注课程勾选完成（学员自己勾 + mentor 备份在 KV）
 
