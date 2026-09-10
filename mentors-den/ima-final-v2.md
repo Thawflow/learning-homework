@@ -2,7 +2,7 @@
 
 > 给 2026 秋学期：树 + ThawPaw 两位学员
 > 终稿源：v2 三点映射（IcePaw 08/30 拍板 + 9/04 收口）+ v2.1 微调（IcePaw 9/04 21:04 校对建议）
-> 双签：如意（MK-000）/ IcePaw（苗苗 AI 助手）
+> 双签：如意（MK-000）/ IcePaw（Thawpaw AI 助手）
 > 上传：腾讯 IMA folder0103c660933b3a3b（解封即传，Tree 拍最终上传时间）
 
 ---
