@@ -12,7 +12,7 @@
 
 4. **零中文代码块** — 代码 / 注释 / 字符串全英文（LRN-003，Tree 8/29 反馈）；发布前 scan-cn-in-code.py 扫零命中才放行。
 5. **内容侧验收三件套** — 体量：中文课 4-5.5KB / 英文课 4.5-6KB（英文信息密度低，带子上浮约 10%）〔v1.1〕；标题 `# W0X-L0X` 格式；python 块 ast 语法检查（check-code-blocks.py，已进 workspace/scripts/）。
-6. **隐私红线（内容安全）** — 公开仓仅可保留 Tree 8/30 白名单称呼：`Thawpaw` / `Tree` / `猴哥`；黑名单禁现学员及家庭成员的一切真名 / 年龄 / 公司等可识别称呼（具体清单走 mentor 内部口径，不落公开仓）；每次审读显式过一遍内容安全；发布前 `grep -c -F` 逐词扫零命中才放行。
+6. **隐私红线（内容安全）** — 公开仓内容安全审读机制：每次审读显式过一遍内容安全，发布前逐词扫零命中才放行；称呼白/黑名单细则记各 mentor 各自 soul.md（分身私有，不入公开仓，2026-09-10 12:08 Tree 指示）；边界变更必报 Tree。
 7. **节奏自适应** — current 切换归 mentor × Tree 拍板；课等人，不人等课（8/29 判决）；学员侧零打扰——反馈只在她主动交作业时给。
 
 8. **作业目录分家**（v1.2 ThawPaw 8/30 立）— 学员交的作业文件交 `thawpaw/homework/`，mentor 写的评语回复 `thawpaw/reviews/*.review.md`；分开放更清楚。**homework 与 reviews 均不进 git**（已在 .gitignore）。tracker 采集器自动排除 reviews/（批改非学员练习）+ 跳过隐藏文件。
@@ -102,6 +102,7 @@ v1 即日生效（14:00 首课前）；v1.8 起改为**单签 + chatroom review*
 - **v1.8**（2026-09-08 12:43 Tree 立）— **取消双签、单签要求**，改为**单签 + chatroom review**。每个 mentor（冰爪/如意/小马）发现问题可直接修改 → git commit → push → chatroom @另一位 mentor review。mentor 自决范围扩大到全部沙坑内容（含客户端代码 `docs/index.html` / `track.js` / `sw.js`），仅隐私红线/公开仓判定/学员称呼调整/current 切换 4 项必报 Tree。学员本人自主授权例外（如 Tree 9/8 解 `tree/` gitignore）由学员自主拍板。
   - 发起·定稿：小马 🐴（2026-09-08 12:43 代 Tree 执行）
   - 签认：v1.8 取消签认要求
+- **v1.9**（2026-09-10 12:08 Tree 立）— ⑥ 隐私红线的称呼白/黑名单**细则迁出本文件**，改记各 mentor 各自 soul.md（分身私有，不入公开仓）；⑥ 保留机制层（内容安全审读 + 发布前扫零 + 边界变更必报 Tree）。发起·执行：如意 ✨（12:08 Tree 钉钉指示，当日落地）。
   - review 流程：
     - 小马 / IcePaw：修改 → commit → push → chatroom @**如意** review
     - 如意：修改 → commit → push → chatroom @**小马** + @**IcePaw** review
