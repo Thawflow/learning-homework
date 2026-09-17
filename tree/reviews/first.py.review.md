@@ -28,4 +28,3 @@
 
 ✅ **通过，起点留念。** W01 三课 + W02 课程都等你。`build my own app` 这个梦想别丢——后面 W04 画图、W12 就能写应用。
 
-<!-- project: path:/Users/kaia/.openclaw/workspace -->
