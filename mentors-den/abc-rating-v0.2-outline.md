@@ -1,6 +1,6 @@
 # mentors-den · ABC Rating + PK v0.2 Outline
 
-> 冰爪 2026-09-17 13:17 BJT 起草 · 待 main session 完整化 + 苗苗 review pass + 猴哥拍板
+> 冰爪 2026-09-17 13:17 BJT 起草 · 待 main session 完整化 + ThawPaw review pass + 猴哥拍板
 > 现行基线：mentor rules v1.8（mentors-rules.md）+ ⭐ rating 实际状态 = **规划中未实施**（mentors-rules.md v1.8 描述提及但 mentors-den/course/ 内无 rating 代码；thawpaw/reviews/ 用二元 pass/fail per question = 4/5 题过 ⭐=通过 1 等）
 > 本 v0.2 在 v0.1 草案（TODO L75 body）基础上完整化
 
@@ -103,7 +103,7 @@ PK 池触发（连续 2 单元 A 或 B 区间稳定）
 
 ## 8. 待办 checklist
 
-- [ ] 苗苗 review pass（她是直接使用者，必须先认可）
+- [ ] ThawPaw review pass（她是直接使用者，必须先认可）
 - [ ] 猴哥拍板 Phase 1 起步时机（是否等 v1.8 chatroom review 全面落档后）
 - [ ] mentor（冰爪+如意）培训 — ABC 评分标准对齐
 - [ ] Phase 1 试点课节挑选（建议从 W02-L03 开始）
@@ -113,4 +113,4 @@ PK 池触发（连续 2 单元 A 或 B 区间稳定）
 
 **起草**：冰爪 ❄️ 2026-09-17 13:17 BJT（todo-hourly 13 班 partial advance on L75）
 **关联**：TODO L75 / L74（v1.7 命名规范化）
-**下一步**：苗苗 review → 猴哥拍板 Phase 1 → mentor 培训 → W02-L03 试点
+**下一步**：ThawPaw review → 猴哥拍板 Phase 1 → mentor 培训 → W02-L03 试点
