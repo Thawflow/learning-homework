@@ -1,0 +1,13 @@
+#!/bin/bash
+# commit message 红线门禁（2026-09-23 教训：家庭成员真名曾入 message）
+# 模式表 .githooks/commit-msg-patterns 不入库（本身含真名，逐行一条固定串）
+PATTERNS="$(dirname "$0")/commit-msg-patterns"
+[ -f "$PATTERNS" ] || exit 0
+while IFS= read -r p; do
+  [ -z "$p" ] && continue
+  if grep -qF -- "$p" "$1"; then
+    echo "❌ commit message 含红线称呼——改用 ThawPaw / Tree / 猴哥 等白名单称呼后重试"
+    exit 1
+  fi
+done < "$PATTERNS"
+exit 0

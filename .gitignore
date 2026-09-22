@@ -7,3 +7,4 @@ thawpaw/*
 mentors-log/
 
 __pycache__/
+.githooks/commit-msg-patterns
